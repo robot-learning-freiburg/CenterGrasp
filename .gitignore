@@ -1,0 +1,10 @@
+*.egg-info
+*.ini
+*.ckpt
+**/__pycache__/**
+
+**/wandb/**
+
+
+rgb_train_config.json
+sgdf_train_config.json

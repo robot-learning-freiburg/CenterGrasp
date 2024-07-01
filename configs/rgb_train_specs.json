@@ -1,0 +1,20 @@
+{
+    "CodeLength": 32,
+    "NumEpochs": 100,
+    "EmbeddingCkptPath": "9vkd9370",
+    "heatmap_loss_w": 100,
+    "shape_loss_w": 1,
+    "pose_loss_w": 5,
+    "normalize_rgb": true,
+    "rgb_mean": [0.5, 0.5, 0.5],
+    "rgb_std": [0.2, 0.2, 0.2],
+    "normalize_depth": false,
+    "depth_mean": [1.0],
+    "depth_std": [0.75],
+    "augment_depth_noise": true,
+    "augment_color_jitter": true,
+    "color_jitter_brightness": 0.5,
+    "color_jitter_contrast": 0.3,
+    "color_jitter_saturation": 0.5,
+    "color_jitter_hue": 0.05
+}
