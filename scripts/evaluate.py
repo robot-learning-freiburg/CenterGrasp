@@ -10,6 +10,7 @@ from centergrasp.pipelines.centergrasp_pipeline import CenterGraspPipeline
 from centergrasp.sapien.sapien_utils import CameraObsConfig
 from centergrasp.sapien.sapien_envs import ENV_DICT
 from centergrasp.sapien.robots import ROBOTS_DICT
+from centergrasp.configs import ZED2HALF_PARAMS
 
 
 def main(
@@ -26,9 +27,9 @@ def main(
     # giga_mode = "packed" if env == "giga_packed" else "pile"
     giga_mode = "packed"
     if method == "centergrasp":
-        pipeline = CenterGraspPipeline(rgb_model, seed, visualize=not headless)
+        pipeline = CenterGraspPipeline(rgb_model, seed, visualize=not headless, camera_params=ZED2HALF_PARAMS)
     elif method == "centergrasp_noicp":
-        pipeline = CenterGraspPipeline(rgb_model, seed, visualize=not headless, use_icp=False)
+        pipeline = CenterGraspPipeline(rgb_model, seed, visualize=not headless, use_icp=False, camera_params=ZED2HALF_PARAMS)
     elif method == "giga":
         pipeline = GigaPipeline(giga_mode, seed, visualize=not headless, real_robot=False)
     else:

@@ -46,7 +46,7 @@ def main(
     save_path = Directories.DATA / "centergrasp_g" / "plot_shape"
     save_path.mkdir(parents=True, exist_ok=True)
     set_seeds(seed)
-    centergrasp_pl = CenterGraspPipeline(rgb_model, seed, visualize=not headless)
+    centergrasp_pl = CenterGraspPipeline(rgb_model, seed, visualize=not headless, camera_params=ZED2HALF_PARAMS)
     giga_pl = GigaPipeline("packed", seed, visualize=not headless, real_robot=real_robot)
 
     # Pyrender setup

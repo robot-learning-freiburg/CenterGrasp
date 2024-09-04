@@ -14,6 +14,7 @@ from centergrasp.pipelines.giga_pipeline import GigaPipeline
 from centergrasp.pipelines.centergrasp_pipeline import CenterGraspPipeline
 from centergrasp.sapien.sapien_utils import CameraObsConfig
 from centergrasp.sapien.sapien_envs import ENV_DICT, PickEnv
+from centergrasp.configs import ZED2HALF_PARAMS
 
 
 def chamfer_distance(x, y, metric="l2", direction="bi"):
@@ -114,8 +115,8 @@ def main(
     giga_mode = "packed"
     method_names = ["centergrasp", "centergrasp_noicp", "giga"]
     methods = [
-        CenterGraspPipeline(rgb_model, seed, visualize=not headless),
-        CenterGraspPipeline(rgb_model, seed, visualize=not headless, use_icp=False),
+        CenterGraspPipeline(rgb_model, seed, visualize=not headless, camera_params=ZED2HALF_PARAMS),
+        CenterGraspPipeline(rgb_model, seed, visualize=not headless, use_icp=False, camera_params=ZED2HALF_PARAMS),
         GigaPipeline(giga_mode, seed, visualize=not headless, real_robot=False),
     ]
     metrics = [Metrics() for _ in range(len(methods))]

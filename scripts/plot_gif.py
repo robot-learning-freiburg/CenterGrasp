@@ -29,7 +29,7 @@ def main(rgb_model: str, idx: int):
     root_path = Directories.DATA / "centergrasp_g" / "plot_gif"
     root_path.mkdir(parents=True, exist_ok=True)
     data_loader = RGBDReaderReal()
-    centergrasp_pipeline = CenterGraspPipeline(rgb_model, visualize=False)
+    centergrasp_pipeline = CenterGraspPipeline(rgb_model, visualize=False, camera_params=ZED2HALF_PARAMS)
     cam_pose = CAM_POSE_REAL
 
     # Pyrender setup
