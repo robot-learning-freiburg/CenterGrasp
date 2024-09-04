@@ -24,7 +24,7 @@ git clone git@github.com:PRBonn/manifold_python.git
 cd manifold_python
 git submodule update --init
 make install
-cd centergrasp_g
+cd CenterGrasp
 pip install -e .
 ```
 
