@@ -17,8 +17,11 @@ def main(log_wandb: bool = False, gpu_num: int = 0, dataset: str = "giga"):
     from pytorch_lightning.callbacks import ModelCheckpoint
     from centergrasp.configs import Directories
     from centergrasp.sgdf.sgdf_dataset import SGDFDataset
-    from centergrasp.graspnet.sgdf_dataset import SGDFDatasetGraspnet
     from centergrasp.sgdf.training_deep_sgdf import LitSGDFModel, load_sgdf_config, EmbeddingLogger
+    try:
+        from centergrasp.graspnet.sgdf_dataset import SGDFDatasetGraspnet
+    except ImportError:
+        print("Graspnet API not available")
 
     # Seeds
     seed = 12345

@@ -26,8 +26,11 @@ def main(
     from centergrasp.rgb.training_centergrasp import LitCenterGraspModel, load_rgb_config
     from centergrasp.rgb.rgb_data import RGBDataset
     from centergrasp.configs import ZED2HALF_PARAMS
-    from centergrasp.graspnet.rgb_data import RGBDatasetGraspnet, KINECT_HALF_PARAMS
-
+    try:
+        from centergrasp.graspnet.rgb_data import RGBDatasetGraspnet, KINECT_HALF_PARAMS
+    except ImportError:
+        print("Graspnet API not available")
+    
     # Seeds
     os.environ["PYTHONHASHSEED"] = str(1)
     random.seed(seed)

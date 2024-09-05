@@ -18,8 +18,8 @@ class GigaPipeline:
         camera_intrinsic = CameraIntrinsic(
             width=ZED2HALF_PARAMS.width,
             height=ZED2HALF_PARAMS.height,
-            fx=ZED2HALF_PARAMS.f_xy,
-            fy=ZED2HALF_PARAMS.f_xy,
+            fx=ZED2HALF_PARAMS.fx,
+            fy=ZED2HALF_PARAMS.fy,
             cx=(ZED2HALF_PARAMS.width - 1) / 2,
             cy=(ZED2HALF_PARAMS.height - 1) / 2,
         )

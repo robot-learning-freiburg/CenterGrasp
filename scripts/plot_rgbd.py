@@ -38,8 +38,8 @@ def main(
     # Pyrender setup
     renderer = pyrender.OffscreenRenderer(ZED2HALF_PARAMS.width, ZED2HALF_PARAMS.height)
     camera = pyrender.IntrinsicsCamera(
-        fx=ZED2HALF_PARAMS.f_xy,
-        fy=ZED2HALF_PARAMS.f_xy,
+        fx=ZED2HALF_PARAMS.fx,
+        fy=ZED2HALF_PARAMS.fy,
         cx=ZED2HALF_PARAMS.cx,
         cy=ZED2HALF_PARAMS.cy,
         znear=0.01,
