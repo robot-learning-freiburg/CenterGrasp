@@ -44,14 +44,18 @@ python scripts/convonet_setup.py build_ext --inplace
 
 ## Data Download
 
-Follow the instructions in the `README.md` of GIGA's repository (https://github.com/UT-Austin-RPL/GIGA) to download giga's pretrained models and object meshes, which are needed to run the evaluations.
-In case you want to train CenterGrasp yourself, you can either download the [pre-generated data](http://centergrasp.cs.uni-freiburg.de/download/centergrasp_g.tar.gz) and extract it in a `datasets` directory in your home folder, or generate it yourself (see below).
+Follow the instructions in the `README.md` of [GIGA's repository](https://github.com/UT-Austin-RPL/GIGA) to download giga's pretrained models and object meshes (from `data.zip`), which are needed to run the evaluations.
+Next, download the [robot description](http://centergrasp.cs.uni-freiburg.de/download/franka.tar.gz) and the [ycb scenes description](http://centergrasp.cs.uni-freiburg.de/download/maniskill_ycb.tar.gz), and extract both folders under `~/datasets/`.
+In case you want to train CenterGrasp yourself, you can either download the [pre-generated data](http://centergrasp.cs.uni-freiburg.de/download/centergrasp_g.tar.gz) (165 GB) and extract it under `~/datasets/`, or generate it yourself (see below).
 
 ## Data Generation
 
-If you want to generate your own training data, follow these steps in order. The data will be saved in the `datasets` directory in your home folder.
+If you want to generate your own training data, follow these steps in order. 
+First, download the pre-generated raw and processed data from [GIGA's repository](https://github.com/UT-Austin-RPL/GIGA), and place the four folders under `~/datasets/giga/`.
+Then, run the following commands. The data will be saved in the `datasets` directory in your home folder.
 
 ```bash
+python scripts/download_cc_texture.py  # Around 30GB will be downloaded
 python scripts/make_grasp_labels.py --num-workers 4
 python scripts/make_sgdf_dataset.py --num-workers 4
 python scripts/make_rgb_dataset.py --headless --raytracing --num-workers 4 --mode train
