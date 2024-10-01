@@ -91,4 +91,4 @@ python scripts/train_rgbd.py --log-wandb
 
 ## GraspNet-1B
 
-To reproduce the results on the GraspNet-1B dataset (Table III in the paper), please check out the folder `centergrasp/graspnet/`. The checkpoints trained on the GraspNet-1B data are here: [sgdf decoder](http://centergrasp.cs.uni-freiburg.de/download/ckpt_sgdf/6953cfxt.zip), [rgb encoder](http://centergrasp.cs.uni-freiburg.de/download/ckpt_rgb/el6oa23g.zip)
+To reproduce the results on the GraspNet-1B dataset (Table III in the paper), please check out the folder `centergrasp/graspnet/`. Note that you first need to download the [GraspNet-1B dataset](https://graspnet.net/datasets.html). The checkpoints trained on the GraspNet-1B data are here: [sgdf decoder](http://centergrasp.cs.uni-freiburg.de/download/ckpt_sgdf/6953cfxt.zip), [rgb encoder](http://centergrasp.cs.uni-freiburg.de/download/ckpt_rgb/el6oa23g.zip)
