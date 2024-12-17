@@ -33,6 +33,7 @@ class StickGripperKinTree:
 class StickGripperFCL:
     def __init__(self) -> None:
         # Collision Geometries
+        # TODO: palm_fcl z should be larger maybe
         palm_fcl = fcl.Box(x=0.02, y=0.10, z=0.01)
         left_finger_fcl = fcl.Box(x=0.02, y=0.01, z=0.05)
         right_finger_fcl = fcl.Box(x=0.02, y=0.01, z=0.05)

@@ -4,6 +4,7 @@
 **/__pycache__/**
 
 **/wandb/**
+*.vscode
 
 
 rgb_train_config.json

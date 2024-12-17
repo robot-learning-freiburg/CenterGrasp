@@ -12,7 +12,7 @@ from centergrasp.rgb.rgb_data import RGBDReader, RGBDReaderReal, RGBDataset
 from centergrasp.rgb.data_structures import RgbdDataNp
 from centergrasp.rgb.rgb_inference import extract_obj_predictions
 from centergrasp.rgb.data_structures import FullObjPred
-from centergrasp.sgdf.sgdf_inference import SGDFInference
+from centergrasp.sgdf.sgdf_inference import SGDFInference, SGDFInferenceGT
 from centergrasp.visualization import RerunViewer
 from centergrasp.configs import ZED2HALF_PARAMS
 
@@ -36,12 +36,12 @@ def vis_object(mesh_path: pathlib.Path, num_grasps: int, transform: np.ndarray, 
     # Grasps
     if num_grasps > 0:
         rng = np.random.default_rng()
-        grasp_poses_all = mesh_grasps.read_poses_data(mesh_path, scale, frame="ttip")
+        grasp_poses_all = mesh_grasps.read_poses_data(mesh_path, scale, frame="hand")
         if len(grasp_poses_all) == 0:
             return
         grasp_poses = rng.choice(grasp_poses_all, num_grasps, replace=False)
         grasp_poses = transform @ grasp_poses
-        RerunViewer.add_grasps(f"vis/grasps/{obj_name}/", grasp_poses)
+        RerunViewer.add_grasps(f"vis/grasps/{obj_name}", grasp_poses)
     return
 
 
@@ -76,7 +76,7 @@ def vis_all_objects_grasps(num_grasps: int):
 
 
 def vis_sgdf_net(sgdf_model: str, obj_name: str = "", group: str = "packed", scale: float = 1.0):
-    sgdf_inference = SGDFInference(sgdf_model)
+    sgdf_inference = SGDFInferenceGT(sgdf_model=sgdf_model)
     while True:
         mesh_path = get_meshpath(obj_name, group)
         mesh_trimesh = mesh_utils.load_mesh_trimesh(mesh_path, scale=scale)
@@ -113,7 +113,7 @@ def vis_sgdf_net_scene(sgdf_model: str, start_idx: int, mode: str):
             FullObjPred.from_net_predictions(rgb_pred, sgdf_pred)
             for rgb_pred, sgdf_pred in zip(rgb_gt_preds, sgdf_preds)
         ]
-        postpr_preds, full_pcd = postprocess_predictions(rgbd_data, full_preds, use_icp=True)
+        postpr_preds, full_pcd = postprocess_predictions(rgbd_data, full_preds, use_icp=True, camera_params=ZED2HALF_PARAMS)
         rr.set_time_sequence(timeline="frame_idx", sequence=i)
         RerunViewer.vis_rgbd_data(rgbd_data)
         RerunViewer.add_o3d_pointcloud("vis/full_pcd", full_pcd, radii=0.0015)
