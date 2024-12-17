@@ -91,9 +91,9 @@ def get_gf_v_vec():
 
 
 def v_vec_from_grasp(grasp_pose):
-    # v in grasp frame
+    # v in canonical frame
     gf_v = get_gf_v_vec()
-    # v in world frame
+    # v in object frame
     wf_v = np.array([grasp_pose @ np.append(x, 1) for x in gf_v])[:, :3]
     return wf_v
 

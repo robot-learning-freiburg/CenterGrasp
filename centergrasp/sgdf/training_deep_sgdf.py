@@ -118,10 +118,10 @@ class LitSGDFModel(pl.LightningModule):
         return sdf, grasp_pose
 
     def v_vec_from_grasp(self, grasp_pose):
-        # v in grasp frame
+        # v in canonical frame
         gf_v = torch.tensor(sgdf_utils.get_gf_v_vec(), dtype=torch.float32)
         gf_v = torch.cat([gf_v, torch.ones((gf_v.shape[0], 1))], dim=1).to(DEVICE)
-        # v in world frame
+        # v in object frame
         wf_v = torch.matmul(grasp_pose.unsqueeze(1), gf_v.unsqueeze(-1)).squeeze(-1)
         return wf_v[..., :3]
 
